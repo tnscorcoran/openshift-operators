@@ -58,10 +58,11 @@ Install dep (Go Dependency Manager) and clean up any lingering operators
 ```
 curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 sudo rm -r $GOPATH/src/github.com/operator-framework
-
+```
 
 Download and build your Operator SDK. 
-> Note future versions of Openshift starting at 4.0 wil use the *Operator Lifecycle Manager* but as this is Tech Preview in my Openshift version (3.11), I'll manually install it
+> Note future versions of Openshift starting at 4.0 will use the *Operator Lifecycle Manager* but as this is Tech Preview still (3.11), let's manually build our operators using the SDK
+
 ```
 mkdir -p $GOPATH/src/github.com/operator-framework
 cd $GOPATH/src/github.com/operator-framework
