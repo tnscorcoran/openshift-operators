@@ -34,11 +34,11 @@ Let's get started!
 ### 1 - Helm based NGINX operator
 
 This discussion and demo is based on an existing [Helm demo](https://github.com/operator-framework/operator-sdk/blob/master/doc/helm/user-guide.md).
-As shown in the 
+As shown in the diagrams above, the Helm operator is the simplest of the 3 Operator types supported by Openshift. That said, it's a great way to run Helm charts in Openshift without Tiller, which requires root access and as such can be considered a security risk.   
 The following shows the steps we will follow:
 ![](https://github.com/tnscorcoran/openshift-operators/blob/master/images/3-nginx-helm-operator.png)
 
-
+First setup your Go environment and 
 
 
 
