@@ -17,7 +17,7 @@ They are
 - Ansible - offering further control by calling out to Ansible playbooks and roles.
 - Go - which could be considered the Gold Standard of operators - allowing you to embed your specific fine grained control logic.
 
-![1-OperatorSDK.png](https://github.com/tnscorcoran/openshift-operators/blob/master/images/1-OperatorSDK.png | width=100)
+![1-OperatorSDK.png](https://github.com/tnscorcoran/openshift-operators/blob/master/images/1-OperatorSDK.png)
 
 You can see they feed into testing and verification facilities allowing them to be stored on a public Operator Hub, though this is out of scope for this article.
 
@@ -32,6 +32,11 @@ and add context around them as well as building their respective demos.
 Let's get started!
 
 ### 1 - Helm based NGINX operator
+
+This discussion and demo is based on an existing [Helm demo](https://github.com/operator-framework/operator-sdk/blob/master/doc/helm/user-guide.md).
+As shown in the 
+The following shows the steps we will follow:
+![](https://github.com/tnscorcoran/openshift-operators/blob/master/images/3-nginx-helm-operator.png)
 
 
 
