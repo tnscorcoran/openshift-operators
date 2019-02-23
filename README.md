@@ -86,8 +86,6 @@ Modify your custom resource instance - setting replicaCount to 2 and port to 808
 vi deploy/crds/example_v1alpha1_nginx_cr.yaml
 ```
 
-### Build and run the operator
-
 As a non-privileged, developer user and create a project 
 ```
 oc login -u andrew
@@ -115,15 +113,61 @@ docker push quay.io/tnscorcoran/nginx-operator:v0.0.1
 You will build your operator in Openshift using a Kubernetes Deployment object 
 # !!!!!!!!! VERIFY THIS 
 that references your newly pushed image in Quay. Modify your deployment to reflect your image:
+
 ```
 sed -i 's|REPLACE_IMAGE|quay.io/tnscorcoran/nginx-operator:v0.0.1|g' deploy/operator.yaml
 ```
 
+As described in the Demo flow diagram above, we need to create a *Service Account* and a *Role* - meaning a non-human user and rights to perform actions, respectively. These 2 are joined and applied to our Operator in our *Role Binding*
+
+> Note. This raw Kubernetes based example requires a small modification to run on Openshift. The Nginx application which the operator manages, requires root access. Openshift will not allow this by default - a prudent security feature of Openshift. As this is just a demo, we'll lift the restriction, running the command 'oc adm policy....'. In production, you should source images not requiring root access, like those in the Red Hat Container catalog. 
+
+Run the following commands to setup your objects and customer resource our operator will watch.
 
 
 
+```
+kubectl create -f deploy/service_account.yaml
+oc adm policy add-scc-to-user anyuid -z nginx-operator
+kubectl create -f deploy/role.yaml
+kubectl create -f deploy/role_binding.yaml
+kubectl create -f deploy/operator.yaml
+kubectl apply -f deploy/crds/example_v1alpha1_nginx_cr.yaml
+```
+# !!!!!!!!! VERIFY WHy we're watching these
+```
+kubectl get deployment
+kubectl get pods
+kubectl get service
+```
 
+Now change replicas to 3 and remove spec.service then apply that
 
+```
+vi deploy/crds/example_v1alpha1_nginx_cr.yaml
+kubectl apply -f deploy/crds/example_v1alpha1_nginx_cr.yaml
+```
+Notice how the Openshift operator acts on your changes bring actual to new desired state. 
+
+Now it's time to clean up. Note all of the dependant objects need to be deleted before we can delete our project.
+
+```
+kubectl delete -f deploy/crds/example_v1alpha1_nginx_cr.yaml
+kubectl delete -f deploy/operator.yaml
+kubectl delete -f deploy/role_binding.yaml
+kubectl delete -f deploy/role.yaml
+kubectl delete -f deploy/service_account.yaml
+kubectl delete -f deploy/crds/example_v1alpha1_nginx_cr.yaml
+```
+
+Wait until all pods are deleted then delete th project.
+
+```
+kubectl get pods
+oc delete project nginx-operator
+```
+
+That's it - your simple Helm operator demo complete!å
 
 =======================================================================================
 =======================================================================================
