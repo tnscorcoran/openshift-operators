@@ -12,7 +12,7 @@ An [Operator](https://coreos.com/blog/introducing-operator-framework) is a piece
 
 An Operator is like an extension your engineering team that watches over the Kubernetes environment and uses its current state to make decisions in milliseconds.
 
-Currently there are 3 Operator implemenation options levels of maturity and complexity
+Currently there are 3 Operator implemenation options of varying levels of maturity and complexity
 
 They are
 - Helm (for running Helm charts in a secure way not requiring Tiller which needs root access and as such could be considered a security risk)
@@ -36,7 +36,7 @@ Let's get started!
 ### 1 - Helm based NGINX operator
 
 This discussion and demo is based on an existing [Helm demo](https://github.com/operator-framework/operator-sdk/blob/master/doc/helm/user-guide.md).
-As shown in the diagrams above, the Helm operator is the simplest of the 3 Operator types supported by Openshift. That said, it's a great way to run Helm charts in Openshift without Tiller, which requires root access and as such can be considered a security risk.   
+As shown in the diagrams above, the Helm operator is the simplest of the 3 Operator types supported by Openshift. That said, it's a great way to run Helm charts in Openshift without Tiller, which as mentioned, requires root access and as such can be considered a security risk.   
 The following shows the steps we will follow:
 ![](https://github.com/tnscorcoran/openshift-operators/blob/master/images/3-nginx-helm-operator.png)
 
