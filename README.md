@@ -1,7 +1,9 @@
 # Openshift Operator Demos
 
 ### Introduction
-This is a discussion around Kubernetes/Openshift [Operators](https://coreos.com/blog/introducing-operator-framework) including instructions and a recording of how to create a demonstration of them on Openshift, the world's leading commercial Kubernetes distribution.
+This is a discussion around Kubernetes/Openshift [Operators](https://coreos.com/blog/introducing-operator-framework) including instructions and a recording of how to create a demonstration of them.
+We'll use Red Hat [Openshift](https://www.openshift.com/), the world's leading commercial Kubernetes distribution.
+
 An [Operator](https://coreos.com/blog/introducing-operator-framework) is a piece of software that runs on Kubernetes that embeds operational knowledge around your containerised applications. An operator allows you to automate and re-use that knowledge to manage your application on an ongoing basis. Tasks typically undertaken by operators include:
 - when and how to upgrade your application as new underlying components become available
 - application and data backup management
@@ -38,7 +40,7 @@ As shown in the diagrams above, the Helm operator is the simplest of the 3 Opera
 The following shows the steps we will follow:
 ![](https://github.com/tnscorcoran/openshift-operators/blob/master/images/3-nginx-helm-operator.png)
 
-Set up Go Environment (version 1.11.2)
+SSH into your RHEL box and set up Go Environment (version 1.11.2)
 
 ```
 cd $HOME
