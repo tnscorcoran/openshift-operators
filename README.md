@@ -1,20 +1,25 @@
 # Openshift Operator Demos
 
 ### Introduction
-An Operator [https://coreos.com/blog/introducing-operator-framework] is a piece of software that runs on Kubernetes that embeds opertional knowledge allowing you to automate and re-use that knowledge and manage your appication on an ongoing basis. Tasks typically undertaken by operators include:
+An [Operator] (https://coreos.com/blog/introducing-operator-framework) is a piece of software that runs on Kubernetes that embeds operational knowledge around your containerised applications. An operator allows you to automate and re-use that knowledge to manage your application on an ongoing basis. Tasks typically undertaken by operators include:
 - when and how to upgrade your application as new underlying components become available
 - application and data backup management
 - application patching 
 - application scaling - horizontal and vertical
 
-An Operator is like an extension of the software vendor’s engineering team that watches over the Kubernetes environment and uses its current state to make decisions in milliseconds.
+An Operator is like an extension your engineering team that watches over the Kubernetes environment and uses its current state to make decisions in milliseconds.
 
 Currently there are 3 Operator implemenation options levels of maturity and complexity
+
+They are
 - Helm (for running Helm charts in a secure way not requiring Tiller which needs root access and as such could be considered a security risk)
 - Ansible - offering further control by calling out to Ansible playbooks and roles.
 - Go - which could be considered the Gold Standard of operators - allowing you to embed your specific fine grained control logic.
 
-... show diagram
+![1-OperatorSDK.png](https://github.com/tnscorcoran/openshift-operators/blob/master/images/1-OperatorSDK.png)
+
+
+You can see they feed into testing and verification facilities allowing them to be stored on a public Operator Hub, though this is out of scope for this article.
 
 In this article we will walk you through the steps to create an Ansible Operator
 
