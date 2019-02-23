@@ -38,7 +38,38 @@ As shown in the diagrams above, the Helm operator is the simplest of the 3 Opera
 The following shows the steps we will follow:
 ![](https://github.com/tnscorcoran/openshift-operators/blob/master/images/3-nginx-helm-operator.png)
 
-First setup your Go environment and 
+Set up Go Environment (version 1.11.2)
+
+```
+cd $HOME
+mkdir -p $HOME/gopath/bin
+echo "export GOPATH=$HOME/gopath" >> $HOME/.bashrc
+echo "export PATH=$HOME/gopath/bin:/usr/local/go/bin:$PATH" >> $HOME/.bashrc
+source $HOME/.bashrc
+
+wget https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz
+tar -C /usr/local -xzf go1.11.2.linux-amd64.tar.gz
+rm -f $HOME/go1.11.2.linux-amd64.tar.gz
+```
+
+Install dep (Go Dependency Manager) and clean up any lingering operators
+```
+curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+sudo rm -r $GOPATH/src/github.com/operator-framework
+
+
+Download and build your Operator SDK. 
+> Note future versions of Openshift starting at 4.0 wil use the *Operator Lifecycle Manager* but as this is Tech Preview in my Openshift version (3.11), I'll manually install it
+```
+mkdir -p $GOPATH/src/github.com/operator-framework
+cd $GOPATH/src/github.com/operator-framework
+git clone https://github.com/operator-framework/operator-sdk
+cd operator-sdk
+git checkout master
+make dep
+make install
+```
+
 
 
 
