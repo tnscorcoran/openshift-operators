@@ -1,6 +1,7 @@
 # Openshift Operator Demos
 
 ### Introduction
+This is a discussion around Kubernetes/Openshift [Operators](https://coreos.com/blog/introducing-operator-framework) including instructions and a recording of how to create a demonstration of them on Openshift, the world's leading commercial Kubernetes distribution.
 An [Operator](https://coreos.com/blog/introducing-operator-framework) is a piece of software that runs on Kubernetes that embeds operational knowledge around your containerised applications. An operator allows you to automate and re-use that knowledge to manage your application on an ongoing basis. Tasks typically undertaken by operators include:
 - when and how to upgrade your application as new underlying components become available
 - application and data backup management
@@ -18,9 +19,38 @@ They are
 
 ![1-OperatorSDK.png](https://github.com/tnscorcoran/openshift-operators/blob/master/images/1-OperatorSDK.png)
 
-
 You can see they feed into testing and verification facilities allowing them to be stored on a public Operator Hub, though this is out of scope for this article.
 
+See also - the Operator Maturity Model - detailing the capabilities unleashed by the 3 operators. 
+![2-Operator-Maturity-Model.png](https://github.com/tnscorcoran/openshift-operators/blob/master/images/2-Operator-Maturity-Model.png)
+
+
+
+Today, I will take two of these operator types:
+- a Helm based NGINX operator 
+- and an Ansible based GOGs operator
+and add context around them as well as building their respective demos.
+
+Let's get started!
+
+### 1 - Helm based NGINX operator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==============================================================================================================================
 In this article we will walk you through the steps to create an Ansible Operator
 
 At a high level these are the steps we will follow
