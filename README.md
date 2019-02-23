@@ -21,7 +21,7 @@ They are
 
 You can see they feed into testing and verification facilities allowing them to be stored on a public Operator Hub, though this is out of scope for this article.
 
-See also - the Operator Maturity Model - detailing the capabilities unleashed by the 3 operators. 
+See also - the Operator Maturity Model - detailing the capabilities unleashed by the 3 operators: 
 ![2-Operator-Maturity-Model.png](https://github.com/tnscorcoran/openshift-operators/blob/master/images/2-Operator-Maturity-Model.png)
 
 
@@ -49,7 +49,15 @@ Let's get started!
 
 
 
-
+=
+=
+=
+=
+=
+=
+=
+=
+=
 ==============================================================================================================================
 In this article we will walk you through the steps to create an Ansible Operator
 
