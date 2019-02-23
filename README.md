@@ -24,8 +24,6 @@ You can see they feed into testing and verification facilities allowing them to 
 See also - the Operator Maturity Model - detailing the capabilities unleashed by the 3 operators: 
 ![2-Operator-Maturity-Model.png](https://github.com/tnscorcoran/openshift-operators/blob/master/images/2-Operator-Maturity-Model.png| width=100)
 
-
-
 Today, I will take two of these operator types:
 - a Helm based NGINX operator 
 - and an Ansible based GOGs operator
