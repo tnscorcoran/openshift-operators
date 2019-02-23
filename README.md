@@ -2,7 +2,7 @@
 
 ### Introduction
 This is a discussion around Kubernetes/Openshift [Operators](https://coreos.com/blog/introducing-operator-framework) including instructions and a recording of how to create a demonstration of them.
-We'll use Red Hat [Openshift](https://www.openshift.com/), the world's leading commercial Kubernetes distribution.
+We'll use Red Hat [Openshift](https://www.openshift.com/), the world's leading commercial Kubernetes distribution. As Openshift is a complete Kubernetes distribution, containing the Kube API and CLI, we'll use kubectl for most of our commands.
 
 An [Operator](https://coreos.com/blog/introducing-operator-framework) is a piece of software that runs on Kubernetes that embeds operational knowledge around your containerised applications. An operator allows you to automate and re-use that knowledge to manage your application on an ongoing basis. Tasks typically undertaken by operators include:
 - when and how to upgrade your application as new underlying components become available
@@ -63,7 +63,6 @@ sudo rm -r $GOPATH/src/github.com/operator-framework
 > Note future versions of Openshift starting at 4.0 will use the *Operator Lifecycle Manager* but as this is Tech Preview still (3.11), let's manually build our operators using the SDK
 
 Download and build your Operator SDK. 
-
 ```
 mkdir -p $GOPATH/src/github.com/operator-framework
 cd $GOPATH/src/github.com/operator-framework
@@ -74,6 +73,51 @@ make dep
 make install
 ```
 
+Build you local operator definition. note the *api-version* and *kind* indicate what the operator will watch for and act on
+
+# !!!!!!!!! VERIFY THIS 
+ 
+```
+operator-sdk new nginx-operator --api-version=example.com/v1alpha1 --kind=Nginx --type=helm
+cd nginx-operator
+```
+Modify your custom resource instance - setting replicaCount to 2 and port to 8080
+```
+vi deploy/crds/example_v1alpha1_nginx_cr.yaml
+```
+
+### Build and run the operator
+
+As a non-privileged, developer user and create a project 
+```
+oc login -u andrew
+oc new-project nginx-operator
+```
+Now, as an administrator, create the Custom Resource Definition (or blueprint for the objects operator will act on)
+```
+oc login -u system:admin
+kubectl create -f deploy/crds/example_v1alpha1_nginx_crd.yaml
+```
+
+We will create an image for our operator and push it to a registry to make it accessible. We'll use https://quay.io and my user is tnscorcoran. Modify as appropriate for your implementation.
+
+```
+docker login -u tnscorcoran quay.io
+operator-sdk build quay.io/tnscorcoran/nginx-operator:v0.0.1
+docker push quay.io/tnscorcoran/nginx-operator:v0.0.1
+```
+
+> 2 things to note. In quay.io:
+	- Under Tags, check the 'v0.0.1' checkbox
+	- Under Settings, make the repo public 
+
+
+You will build your operator in Openshift using a Kubernetes Deployment object 
+# !!!!!!!!! VERIFY THIS 
+that references your newly pushed image in Quay. Modify your deployment to reflect your image:
+```
+sed -i 's|REPLACE_IMAGE|quay.io/tnscorcoran/nginx-operator:v0.0.1|g' deploy/operator.yaml
+```
 
 
 
@@ -81,22 +125,10 @@ make install
 
 
 
-
-
-
-
-
-
-=
-=
-=
-=
-=
-=
-=
-=
-=
-==============================================================================================================================
+=======================================================================================
+=======================================================================================
+=======================================================================================
+=======================================================================================
 In this article we will walk you through the steps to create an Ansible Operator
 
 At a high level these are the steps we will follow
