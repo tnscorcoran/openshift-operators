@@ -60,8 +60,9 @@ curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 sudo rm -r $GOPATH/src/github.com/operator-framework
 ```
 
-Download and build your Operator SDK. 
 > Note future versions of Openshift starting at 4.0 will use the *Operator Lifecycle Manager* but as this is Tech Preview still (3.11), let's manually build our operators using the SDK
+
+Download and build your Operator SDK. 
 
 ```
 mkdir -p $GOPATH/src/github.com/operator-framework
