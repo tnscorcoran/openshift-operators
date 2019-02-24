@@ -114,8 +114,8 @@ docker push quay.io/tnscorcoran/nginx-operator:v0.0.1
 ```
 
 > 2 things to note. In quay.io:
-	- Under Tags, check the 'v0.0.1' checkbox
-	- Under Settings, make the repo public 
+	1) Under Tags, check the 'v0.0.1' checkbox
+	2) Under Settings, make the repo public 
 
 
 You will build your operator in Openshift using a Kubernetes Deployment object that references your newly pushed image in Quay. Modify your deployment object to reflect your image:
