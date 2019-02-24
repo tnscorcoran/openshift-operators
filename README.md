@@ -179,12 +179,44 @@ That's it - you've completed your simple Helm operator demo!
 
 # Ansible based GOGS operator
 
-Next we're going to discuss and run a more powerful operator - the Ansible operator. This is particularly useful for Ops folk which want to harness the power of Ansible in their operators. 
+Next we're going to discuss and run a more powerful operator - the Ansible operator. This is particularly useful for Ops folk who want to harness the power of Ansible in their operators. 
 
 The following shows the steps we will follow:
 ![](https://github.com/tnscorcoran/openshift-operators/blob/master/images/4-gogs-ansible-operator.png)
 
 SSH into your RHEL box. If starting from scratch, set up Go Environment (version 1.11.2). As we're not, we don't need to do this.
+
+
+Cleanup the work we did in the previous lab
+
+```
+cd $HOME
+sudo rm -r $GOPATH/src/github.com/operator-framework
+```
+
+
+Clone and re-build the operator-sdk executable - as we use the v0.2.x branch for this demo
+
+```
+mkdir -p $GOPATH/src/github.com/operator-framework
+cd $GOPATH/src/github.com/operator-framework
+git clone https://github.com/operator-framework/operator-sdk
+cd operator-sdk
+git checkout v0.2.x
+make dep
+make install
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 
