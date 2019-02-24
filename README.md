@@ -207,6 +207,15 @@ make dep
 make install
 ```
 
+There is a repository that someone else built that includes Ansible roles to set up a PostgreSQL database and a Gogs Server on top of OpenShift. The repository also contains an Ansible playbook that calls these roles to create a Gogs Server backed by a PostgreSQL database in a project on OpenShift. We'll now use the Ansible Operator to convert these roles into an Operator that can create Gogs installations by simple requesting a Custom Gogs Resource.
+Clone and checkout desired branch:
+
+```
+git clone https://github.com/redhat-gpte-devopsautomation/ansible-operator-roles
+cd ansible-operator-roles
+git checkout 0.2.0
+cd $HOME
+```
 
 
 
