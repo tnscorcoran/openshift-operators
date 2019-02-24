@@ -303,7 +303,7 @@ cat deploy/operator.yaml
 	1) Under Tags, check the 'v0.0.1' checkbox
 	2) Under Settings, make the repo public 
 
-Now it's almost time to deploy the Gogs Operator. First examine the Custom Resource Definition that got created by the Operator SDK. These objects, once created, will be managed by the operator we just created.
+Now it's almost time to deploy the Gogs Operator. First examine the Custom Resource Definition that got created by the Operator SDK. Instances of these objects, once created, will be managed by the operator we just created.
 
 ```
 cd $HOME/gogs-operator
@@ -355,6 +355,80 @@ We also need a non-human Openshift user to execute the operator tasks
 ```
 oc create -f ./deploy/service_account.yaml
 ```
+Replace the existing Role with one having the correct permissions
+
+```
+sudo rm $HOME/gogs-operator/deploy/role.yaml
+
+echo 'apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: gogs-operator
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - services
+  - endpoints
+  - persistentvolumeclaims
+  - configmaps
+  - secrets
+  - routes
+  verbs:
+  - create
+  - update
+  - delete
+  - get
+  - list
+  - watch
+  - patch
+- apiGroups:
+  - gpte.opentlc.com
+  resources:
+  - gogs
+  verbs:
+  - create
+  - update
+  - delete
+  - get
+  - list
+  - watch
+  - patch' > $HOME/gogs-operator/deploy/role.yaml
+  
+oc create -f $HOME/gogs-operator/deploy/role.yaml
+```
+
+The Role Binding connects this Role to the Operator's Service account:
+
+```
+oc create -f $HOME/gogs-operator/deploy/role_binding.yaml
+```
+
+Now create the Operator and wait for it to come up 
+
+```
+oc create -f ./deploy/operator.yaml
+watch oc get pod
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
