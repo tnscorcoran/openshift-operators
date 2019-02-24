@@ -1,6 +1,6 @@
 # Openshift Operator Demos
 
-### Introduction
+## Introduction
 This is a discussion around Kubernetes/Openshift [Operators](https://coreos.com/blog/introducing-operator-framework) including instructions and a recording of how to create a demonstration of them.
 We'll use Red Hat [Openshift](https://www.openshift.com/), the world's leading commercial Kubernetes distribution. As Openshift is a complete Kubernetes distribution, containing the Kube API and CLI, we'll use kubectl for most of our commands.
 
@@ -33,7 +33,7 @@ and add context around them as well as building their respective demos.
 
 Let's get started!
 
-### 1 - Helm based NGINX operator
+# Helm based NGINX operator
 
 This discussion and demo is based on an existing [Helm demo](https://github.com/operator-framework/operator-sdk/blob/master/doc/helm/user-guide.md).
 As shown in the diagrams above, the Helm operator is the simplest of the 3 Operator types supported by Openshift. That said, it's a great way to run Helm charts in Openshift without Tiller, which as mentioned, requires root access and as such can be considered a security risk.   
@@ -177,7 +177,7 @@ oc delete project nginx-operator
 That's it - you've completed your simple Helm operator demo!
 
 
-### 2 - Ansible based GOGS operator
+# Ansible based GOGS operator
 
 Next we're going to discuss and run a more powerful operator - the Ansible operator. This is particularly useful for Ops folk which want to harness the power of Ansible in their operators. 
 
