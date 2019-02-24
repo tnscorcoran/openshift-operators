@@ -479,24 +479,28 @@ oc get route
 
 It's http based, so it doesn't redirect as we specified *gogsSsl: False*
 
-Now it's almost time to clean up the Gogs Servers. One final thing - notice our Postgresql DB Pod definition has an ownerreference of *gogs-server* when we view its yaml:  
+Now it's almost time to clean up the Gogs Servers. One final thing - notice our Postgresql DB Pod definition has an *ownerReferences* section specifying *gogs-server* when we view its yaml:  
 
 ```
 oc get pod postgresql-gogs-gogs-server -o yaml
 ```
 
-By contrast, the top level *gogs-server* - does not have an ownerreference:  
+# ABOUT 10 lines from the top - AND DELETE THIS AFTER
+
+
+By contrast, the top level *gogs-server* - does not have an *ownerReferences* section:  
 
 ```
 oc get gogs gogs-server -o yaml
 ```
 
-This allows us to delet the entire dependency tree just by deleting the top level entity. This is a useful automation feature
+This *parent referencing* allows us to delete the entire dependency tree just by deleting the top level entity. This is a useful automation feature
 Let's delete our 2 gogs servers and watch their dependant Postgres DBs being deleted:
 
 ```
 oc delete gogs gogs-server
 oc delete gogs another-gogs
+oc get pods -w
 ```
 
 Now complete our cleanup and we're done.
