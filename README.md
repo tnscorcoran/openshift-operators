@@ -73,7 +73,7 @@ make dep
 make install
 ```
 
-Build you local operator definition. note the *api-version* and *kind* indicate what the operator will watch for and act on
+Build your local operator definition. note the *api-version* and *kind* indicate what the operator will watch for and act on
 
 # !!!!!!!!! VERIFY THIS 
  
@@ -95,6 +95,14 @@ Now, as an administrator, create the Custom Resource Definition (or blueprint fo
 ```
 oc login -u system:admin
 kubectl create -f deploy/crds/example_v1alpha1_nginx_crd.yaml
+```
+
+Install and enable Docker
+
+```
+yum -y install docker
+systemctl enable docker
+systemctl start docker
 ```
 
 We will create an image for our operator and push it to a registry to make it accessible. We'll use https://quay.io and my user is tnscorcoran. Modify as appropriate for your implementation.
