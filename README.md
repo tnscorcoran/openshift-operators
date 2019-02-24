@@ -299,9 +299,69 @@ sed -i 's|REPLACE_IMAGE|quay.io/tnscorcoran/gogs-operator:v0.0.1|g' deploy/opera
 cat deploy/operator.yaml
 ```
 
-> As mentioned abopve on the Helm demo, there are 2 things to note at this point. In quay.io, under your new nginx-operator image:
+> Similar to above on the Helm demo, there are 2 things to note at this point. In quay.io, under your new gogs-operator image:
 	1) Under Tags, check the 'v0.0.1' checkbox
 	2) Under Settings, make the repo public 
+
+Now it's almost time to deploy the Gogs Operator. First examine the Custom Resource Definition that got created by the Operator SDK. These objects, once created, will be managed by the operator we just created.
+
+```
+cd $HOME/gogs-operator
+cat deploy/crds/gpte_v1alpha1_gogs_crd.yaml
+```
+
+As a non-privileged, developer user and create a project 
+
+```
+oc login -u andrew
+oc new-project gogs-operator
+```
+
+Now, as an administrator, create the Custom Resource Definition (or blueprint for the objects operator will act on)
+
+```
+oc login -u system:admin
+oc create -f deploy/crds/gpte_v1alpha1_gogs_crd.yaml
+```
+
+Now we create a *Cluster Role* detailing the actions this operator can execute (there is also a namespace scoped equivalent *Role*)
+Create this Cluster Role:
+
+```
+echo '---
+apiVersion: authorization.openshift.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    rbac.authorization.k8s.io/aggregate-to-admin: "true"
+  name: gogs-admin-rules
+rules:
+- apiGroups:
+  - gpte.opentlc.com
+  resources:
+  - gogs
+  verbs:
+  - create
+  - update
+  - delete
+  - get
+  - list
+  - watch
+  - patch' | oc create -f -
+```
+
+We also need a non-human Openshift user to execute the operator tasks
+
+```
+oc create -f ./deploy/service_account.yaml
+```
+
+
+
+
+
+
+
 
 
 
