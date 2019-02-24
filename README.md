@@ -180,6 +180,7 @@ That's it - you've completed your simple Helm operator demo!
 # Ansible based GOGS operator
 
 Next we're going to discuss and run a more powerful operator - the Ansible operator. This is particularly useful for Ops folk who want to harness the power of Ansible in their operators. 
+This discussion and demo is based on an existing [Ansible operator demo](http://www.opentlc.com/operators/04_01_Writing_an_Operator_Lab.html).
 
 The following shows the steps we will follow:
 ![](https://github.com/tnscorcoran/openshift-operators/blob/master/images/4-gogs-ansible-operator.png)
@@ -211,6 +212,7 @@ There is a repository that someone else built that includes Ansible roles to set
 Clone and checkout desired branch:
 
 ```
+cd $HOME
 git clone https://github.com/redhat-gpte-devopsautomation/ansible-operator-roles
 cd ansible-operator-roles
 git checkout 0.2.0
@@ -234,6 +236,11 @@ We can see the actual tasks Ansible executes by viewing the referenced tasks fil
 cat $HOME/ansible-operator-roles/roles/postgresql-ocp/tasks/main.yml
 cat $HOME/ansible-operator-roles/roles/gogs-ocp/tasks/main.yml
 ```
+
+
+
+
+
 
 
 
