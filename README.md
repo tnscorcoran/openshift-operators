@@ -126,7 +126,7 @@ sed -i 's|REPLACE_IMAGE|quay.io/tnscorcoran/nginx-operator:v0.0.1|g' deploy/oper
 
 As described in the Demo flow diagram above, we need to create a *Service Account* and a *Role* - meaning a non-human user and rights to perform actions, respectively. These 2 are joined and applied to our Operator in our *Role Binding*
 
-> Note. This raw Kubernetes based example requires a small modification to run on Openshift. The Nginx application which the operator manages, requires root access. Openshift will not allow this by default - a prudent security feature of Openshift. As this is just a demo, we'll lift the restriction, running the command 'oc adm policy....'. In production, you should source images not requiring root access, like those in the Red Hat Container catalog. 
+> Note. This raw Kubernetes based example requires a small modification to run on Openshift. The Nginx application which the operator manages, requires root access. Openshift will not allow this by default - a prudent security feature of Openshift. As this is just a demo, we'll lift the restriction, running the command below: 'oc adm policy....'. In production, you should source images not requiring root access, like those in the Red Hat Container Catalog. 
 
 Run the following commands to setup your objects and customer resource our operator will watch.
 
@@ -134,7 +134,7 @@ Run the following commands to setup your objects and customer resource our opera
 
 ```
 kubectl create -f deploy/service_account.yaml
-oc adm policy add-scc-to-user anyuid -z nginx-operator
+oc adm policy add-scc-to-user anyuid -z default
 kubectl create -f deploy/role.yaml
 kubectl create -f deploy/role_binding.yaml
 kubectl create -f deploy/operator.yaml
