@@ -258,13 +258,50 @@ cp $HOME/ansible-operator-roles/playbooks/gogs.yaml ./playbook.yaml
 ```
 
 Once we have our operator and its configuration in place via the playbooks above, the Ansible Operator's configuration is controlled by a simple file, *watches.yaml*. The link to the configuration we applied previously is through the *group*, *version* and *kind*
-Take a look at this simple file 
+Take a look at this simple file: 
 
 ```
 cat ./watches.yaml
 ```
 
+Take a look at the Dockerfile used to build your image - it specifies the base Ansible Operator image and copies your Ansible files. 
 
+```
+cat build/Dockerfile
+```
+
+Let's change the base image to a more up to date one:
+
+```
+sed -i 's|quay.io/water-hole/ansible-operator|quay.io/wkulhanek/ansible-operator:v0.2.0|g' build/Dockerfile
+```
+
+If starting from scratch, Install Docker as described above (we don't need to).
+Now it's time to build our own version of the Ansible Operator image and deploy to our own repo. (we use quay.io)
+If needed, create a free account at https://quay.io. Mine is tnscorcoran. Login:
+
+```
+docker login -u tnscorcoran quay.io
+```
+
+Build and push to registry
+
+```
+cd $HOME/gogs-operator
+operator-sdk build quay.io/tnscorcoran/gogs-operator:v0.0.1
+docker push quay.io/tnscorcoran/gogs-operator:v0.0.1
+```
+
+Now we modify the operator deployment definition (deploy/operator.yaml) to use the image that we just pushed 
+
+```
+sed -i 's|REPLACE_IMAGE|quay.io/tnscorcoran/gogs-operator:v0.0.1|g' deploy/operator.yaml
+cat deploy/operator.yaml
+```
+
+> As mentioned abopve on the Helm demo, there are 2 things to note at this point. In quay.io, under your new nginx-operator image:
+	1) Under Tags, check the 'v0.0.1' checkbox
+	2) Under Settings, make the repo public 
 
 
 
