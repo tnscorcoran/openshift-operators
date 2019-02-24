@@ -412,7 +412,62 @@ oc create -f ./deploy/operator.yaml
 watch oc get pod
 ```
 
+Use the Operator to create a Gogs Server and watch it come up:
 
+```
+echo "apiVersion: gpte.opentlc.com/v1alpha1
+kind: Gogs
+metadata:
+  name: gogs-server
+spec:
+  postgresqlVolumeSize: 4Gi
+  gogsVolumeSize: 4Gi
+  gogsSsl: True" > $HOME/gogs-operator/gogs-server.yaml
+
+oc create -f $HOME/gogs-operator/gogs-server.yaml
+
+watch oc get pod
+```
+
+See your GOGS custom resource and describe the Gogs server
+
+```
+oc get gogs
+oc describe gogs gogs-server
+```
+
+View your Route
+
+```
+oc get route
+```
+
+Notice if you paste in the the route hostname without the protocol, you'll be redirected to the https route - as we specified gogsSsl as true in our Custom Resource
+
+
+Now deploy a second gogs server - with this Custom Resource instance - configured with *gogsSsl:false*. Wait for it to come up: 
+
+```
+echo "apiVersion: gpte.opentlc.com/v1alpha1
+kind: Gogs
+metadata:
+  name: another-gogs
+spec:
+  postgresqlVolumeSize: 4Gi
+  gogsVolumeSize: 4Gi
+  gogsSsl: False" > $HOME/gogs-operator/gogs-server-2.yaml
+
+oc create -f $HOME/gogs-operator/gogs-server-2.yaml
+watch oc get pod
+```
+
+When it's ready, use the route as previously
+
+```
+oc get route
+```
+
+It's http based, with no redirect as we specified *gogsSsl: False*
 
 
 
