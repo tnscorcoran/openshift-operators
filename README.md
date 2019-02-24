@@ -140,7 +140,10 @@ kubectl create -f deploy/role_binding.yaml
 kubectl create -f deploy/operator.yaml
 kubectl apply -f deploy/crds/example_v1alpha1_nginx_cr.yaml
 ```
-# !!!!!!!!! VERIFY WHy we're watching these
+Examine our Deployments, Pods and Service. 
+- We can see our operator running as well as our Nginx application. Our Desired and Current replicas ar in sync.
+- 3 pods are running as expected
+- Our Service is exposed on port 8080 as we configured in our Custom Resource instance that our operator is watching 
 ```
 kubectl get deployment
 kubectl get pods
