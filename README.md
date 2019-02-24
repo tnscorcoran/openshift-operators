@@ -477,7 +477,7 @@ When it's ready, use the route as previously
 oc get route
 ```
 
-It's http based, with no redirect as we specified *gogsSsl: False*
+It's http based, so it doesn't redirect as we specified *gogsSsl: False*
 
 Now it's almost time to clean up the Gogs Servers. One final thing - notice our Postgresql DB Pod definition has an ownerreference of *gogs-server* when we view its yaml:  
 
