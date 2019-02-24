@@ -217,6 +217,26 @@ git checkout 0.2.0
 cd $HOME
 ```
 
+The Ansible Operator uses this playbook that sets up 2 tasks:
+1) a GOGS Git server 
+2) a Postgres database used by GOGS. 
+Both tasks reference an Ansible role where the desired state and configuration of the underlying Pods is defined. 
+Examine the playbook that calls the roles. This playbook will be periodically run to ensure actual state matches desired state:  
+
+```
+cat $HOME/ansible-operator-roles/playbooks/gogs.yaml
+
+```
+
+We can see the actual tasks Ansible executes by viewing the referenced tasks files: 
+
+```
+cat $HOME/ansible-operator-roles/roles/postgresql-ocp/tasks/main.yml
+cat $HOME/ansible-operator-roles/roles/gogs-ocp/tasks/main.yml
+```
+
+
+
 
 
 
