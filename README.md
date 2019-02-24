@@ -494,7 +494,7 @@ By contrast, the top level *gogs-server* - does not have an *ownerReferences* se
 oc get gogs gogs-server -o yaml
 ```
 
-This *parent referencing* allows us to delete the entire dependency tree just by deleting the top level entity. This is a useful automation feature
+This *parent referencing* allows us to delete the entire dependency tree just by deleting the top level entity - a useful automation feature.
 Let's delete our 2 gogs servers and watch their dependant Postgres DBs being deleted:
 
 ```
