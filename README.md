@@ -237,6 +237,34 @@ cat $HOME/ansible-operator-roles/roles/postgresql-ocp/tasks/main.yml
 cat $HOME/ansible-operator-roles/roles/gogs-ocp/tasks/main.yml
 ```
 
+As administrator, create your operator definition
+
+```
+oc login -u system:admin
+operator-sdk new gogs-operator --api-version=gpte.opentlc.com/v1alpha1 --kind=Gogs --type=ansible --generate-playbook --skip-git-init
+```
+
+
+As we specified the type as *ansible*, the operator-sdk creates a skeleton playbook and a skeleton roles directory. But we already have a playbook and roles from the repository we cloned earlier.
+Switch into the directory and replace the playbook and roles directory with the ones we downloaded.
+
+```
+cd $HOME/gogs-operator
+rm -rf roles playbook.yaml
+mkdir roles
+cp -R $HOME/ansible-operator-roles/roles/postgresql-ocp ./roles
+cp -R $HOME/ansible-operator-roles/roles/gogs-ocp ./roles
+cp $HOME/ansible-operator-roles/playbooks/gogs.yaml ./playbook.yaml
+```
+
+Once we have our operator and its configuration in place via the playbooks above, the Ansible Operator's configuration is controlled by a simple file, *watches.yaml*. The link to the configuration we applied previously is through the *group*, *version* and *kind*
+Take a look at this simple file 
+
+```
+cat ./watches.yaml
+```
+
+
 
 
 
