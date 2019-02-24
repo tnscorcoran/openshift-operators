@@ -146,7 +146,7 @@ kubectl get deployment
 kubectl get pods
 kubectl get service
 ```
-- We can see our operator running as well as our Nginx application. Our Desired and Current replicas ar in sync.
+- We can see our operator running as well as our Nginx application. Our Desired and Current replicas are in sync.
 - 3 pods are running as expected
 - Our Service is exposed on port 8080 as we configured in our Custom Resource instance that our operator is watching 
 
@@ -167,16 +167,16 @@ kubectl delete -f deploy/role_binding.yaml
 kubectl delete -f deploy/role.yaml
 kubectl delete -f deploy/service_account.yaml
 kubectl delete -f deploy/crds/example_v1alpha1_nginx_cr.yaml
-```
-
-Wait until all pods are deleted then delete th project.
-
-```
 kubectl get pods
+```
+
+Wait until all pods are deleted then delete the project.
+
+```
 oc delete project nginx-operator
 ```
 
-That's it - your simple Helm operator demo complete!å
+That's it - you've completed your simple Helm operator demo!
 
 =======================================================================================
 =======================================================================================
