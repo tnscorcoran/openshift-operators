@@ -518,7 +518,7 @@ Wait until everything is gone
 oc get pods
 ```
 
-Now delete the project and clsuster scoped objects
+Now delete the project and cluster scoped objects
 
 ```
 oc delete project gogs-operator
@@ -526,113 +526,5 @@ oc delete clusterrole gogs-admin-rules
 oc delete crd gogs.gpte.opentlc.com
 ```
 
-Thanks for allowing me to demo you 2 Kubernetes and Openshift Operators - the Helm Operator and  the Ansible Operator
+Thanks for allowing me to demo you 2 Kubernetes and Openshift Operators - the Helm Operator and the Ansible Operator
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======================================================================================
-=======================================================================================
-=======================================================================================
-=======================================================================================
-In this article we will walk you through the steps to create an Ansible Operator
-
-At a high level these are the steps we will follow
-
-- Create Cluster Role and Cluster Role Binding
-The Create Cluster Role creation also creates a new *API Group* [https://docs.openshift.com/container-platform/3.11/admin_guide/custom_resource_definitions.html] (a group of related objects in Openshift) called *etcd.database.coreos.com*. An API Group is required to create a new Custom Resource Definition in Kubernetes - required for an Operator.
-It effectively defines the Resources (custom and built in) and permissions on those resources. 
-
-TODO - mention what /example/rbac/role-template.yaml does
-
-The Cluster Role Binding binds the resources and permissions defined in the Cluster Role to a Service account [https://docs.openshift.com/container-platform/3.11/dev_guide/service_accounts.html] - a non-human user account required by pods to execute calls on the Openshift API.
-
-
-FROM: first sentence of: http://www.opentlc.com/operators/04_01_Writing_an_Operator_Lab.html
-ADD: These to intro
-	- "The Operator then watches for custom resource objects to be created - and when it sees a custom resource 	
-	being created it creates the application based on the parameters in the custom resource object."
-	- "Red Hat has provided a Software Development Kit that significantly simplifies the creation of Operators. 
-	The SDK handles all the core logic while the developer only needs to fill in the actual business logic."
-	- "In this lab you are using the Ansible Operator SDK to create an Operator using two Ansible Roles and a 
-	Playbook that sets up a PostgreSQL Database and a Gogs Server that uses that database"
-	
-- install Operator .... future versions of Openshift starting at 4.0 wil use the *Operator Lifecycle Manager* but as this is Tech Preview in my Openshift version (3.11), I'll manually install it
-Note it's of *Kind: Deployment*
-oc create -f ./example/deployment.yaml
-
-- When starting for the first time, the Operator will create a new CRD - of type *etcdclusters.etcd.database.coreos.com* viewable by running
-oc get crds
-Describe it:
-oc describe crd etcdclusters.etcd.database.coreos.com
-
-
-- now create an instance of our Custom Resource - in our case EtcdCluster.
-oc create -f ./example/example-etcd-cluster.yaml
-
-When we do this, the operator kicks into action and specifies as many EtcdClusters and the version our EtcdCluster Custom Resource Definition specifies.
-
--  
-
-
-
-
-
-
-============
-
-TODO: oc describe crd etcdclusters.etcd.database.coreos.com
-
-
-
-
-
-
-
-
-
-
-
-### Demo Instructions
-
-
-TO
