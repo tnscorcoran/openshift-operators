@@ -73,9 +73,7 @@ make dep
 make install
 ```
 
-Build your local operator definition. note the *api-version* and *kind* indicate what the operator will watch for and act on
-
-# !!!!!!!!! VERIFY THIS 
+Build your local operator definition. Note the *api-version* and *kind* used to build the operator. This configures the operator to watch for and act on custom resources of this *api-version* and *kind*. 
  
 ```
 operator-sdk new nginx-operator --api-version=example.com/v1alpha1 --kind=Nginx --type=helm
@@ -177,6 +175,13 @@ oc delete project nginx-operator
 ```
 
 That's it - you've completed your simple Helm operator demo!
+
+
+### 2 - Ansible based GOGS operator
+
+Next we're going to discuss and run a more powerful operator - the Ansible operator. This is particularly useful for Ops folk which want to harness the power of Ansible in their operators. 
+
+
 
 =======================================================================================
 =======================================================================================
