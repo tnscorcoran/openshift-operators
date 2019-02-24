@@ -412,7 +412,7 @@ oc create -f ./deploy/operator.yaml
 watch oc get pod
 ```
 
-Use the Operator to create a Gogs Server and watch it come up:
+Use the Operator to create a Gogs Server and its dependant Postgres DB and watch them come up:
 
 ```
 echo "apiVersion: gpte.opentlc.com/v1alpha1
@@ -428,6 +428,10 @@ oc create -f $HOME/gogs-operator/gogs-server.yaml
 
 watch oc get pod
 ```
+
+
+# PAUSE RECORDING - AND DELETE THIS AFTER
+
 
 See your GOGS custom resource and describe the Gogs server
 
@@ -461,6 +465,12 @@ oc create -f $HOME/gogs-operator/gogs-server-2.yaml
 watch oc get pod
 ```
 
+
+
+# PAUSE RECORDING - AND DELETE THIS AFTER
+
+
+
 When it's ready, use the route as previously
 
 ```
@@ -468,6 +478,52 @@ oc get route
 ```
 
 It's http based, with no redirect as we specified *gogsSsl: False*
+
+Now it's almost time to clean up the Gogs Servers. One final thing - notice our Postgresql DB Pod definition has an ownerreference of *gogs-server* when we view its yaml:  
+
+```
+oc get pod postgresql-gogs-gogs-server -o yaml
+```
+
+By contrast, the top level *gogs-server* - does not have an ownerreference:  
+
+```
+oc get gogs gogs-server -o yaml
+```
+
+This allows us to delet the entire dependency tree just by deleting the top level entity. This is a useful automation feature
+Let's delete our 2 gogs servers and watch their dependant Postgres DBs being deleted:
+
+```
+oc delete gogs gogs-server
+oc delete gogs another-gogs
+```
+
+Now complete our cleanup and we're done.
+
+```
+oc delete deployment gogs-operator
+oc delete rolebinding gogs-operator
+oc delete role gogs-operator
+oc delete sa gogs-operator
+```
+
+Wait until everything is gone
+
+```
+oc get pods
+```
+
+Now delete the project and clsuster scoped objects
+
+```
+oc delete project gogs-operator
+oc delete clusterrole gogs-admin-rules
+oc delete crd gogs.gpte.opentlc.com
+```
+
+Thanks for allowing me to demo you 2 Kubernetes and Openshift Operators - the Helm Operator and  the Ansible Operator
+
 
 
 
