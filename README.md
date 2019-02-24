@@ -113,7 +113,7 @@ operator-sdk build quay.io/tnscorcoran/nginx-operator:v0.0.1
 docker push quay.io/tnscorcoran/nginx-operator:v0.0.1
 ```
 
-> 2 things to note. In quay.io:
+> 2 things to note. In quay.io, under your new nginx-operator image:
 	1) Under Tags, check the 'v0.0.1' checkbox
 	2) Under Settings, make the repo public 
 
