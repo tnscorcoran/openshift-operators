@@ -9,10 +9,11 @@ An [Operator](https://coreos.com/blog/introducing-operator-framework) is a piece
 - application and data backup management
 - application patching 
 - application scaling - horizontal and vertical
+- configuration aspects - e.g. whether or use SSL, number of replicas etc.
 
 An Operator is like an extension your engineering team that watches over the Kubernetes environment and uses its current state to make decisions in milliseconds.
 
-Currently there are 3 Operator implemenation options of varying levels of maturity and complexity
+Currently there are 3 Operator implementation options of varying levels of maturity and complexity
 
 They are
 - Helm (for running Helm charts in a secure way not requiring Tiller which needs root access and as such could be considered a security risk)
