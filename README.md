@@ -13,6 +13,10 @@ An [Operator](https://coreos.com/blog/introducing-operator-framework) is a piece
 
 An Operator is like an extension your engineering team that watches over the Kubernetes environment and uses its current state to make decisions in milliseconds.
 
+The vision for Operators is to allow Independent Software Vendors (ISVs) to bundle operators with their software - in order to make them as maintainable, updatable and essentially as robust as possible, This vision is fast becoming a reality. 
+
+Where operators will really become powerful is with the future release of the Operator Lifecycle Manager (OLM). Using the OLM, cluster administrators will be able to centrally manage and configure ISV provided operators - controlling everything an operator has been configured to do across the whole cluster - from a central location. See this [demo of OLM](https://www.youtube.com/watch?v=nGM2s4-Qr74)
+
 Currently there are 3 Operator implementation options of varying levels of maturity and complexity
 
 They are
@@ -31,8 +35,6 @@ Today, I will take two of these operator types:
 - a Helm based NGINX operator 
 - and an Ansible based GOGs operator
 and add context around them as well as building their respective demos.
-
-> Note future versions of Openshift starting at 4.0 will use the *Operator Lifecycle Manager* but as this is Tech Preview still (3.11), let's manually build our operators using the SDK
 
 Let's get started!
 
@@ -64,8 +66,6 @@ Install dep (Go Dependency Manager) and clean up any lingering operators
 curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 sudo rm -r $GOPATH/src/github.com/operator-framework
 ```
-
-> Note future versions of Openshift starting at 4.0 will use the *Operator Lifecycle Manager* but as this is Tech Preview still (3.11), let's manually build our operators using the SDK
 
 Download and build your Operator SDK. 
 ```
