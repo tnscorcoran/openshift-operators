@@ -429,10 +429,6 @@ oc create -f $HOME/gogs-operator/gogs-server.yaml
 watch oc get pod
 ```
 
-
-# PAUSE RECORDING - AND DELETE THIS AFTER
-
-
 See your GOGS custom resource and describe the Gogs server
 
 ```
@@ -466,11 +462,6 @@ watch oc get pod
 ```
 
 
-
-# PAUSE RECORDING - AND DELETE THIS AFTER
-
-
-
 When it's ready, use the route as previously
 
 ```
@@ -484,9 +475,6 @@ Now it's almost time to clean up the Gogs Servers. One final thing - notice our 
 ```
 oc get pod postgresql-gogs-gogs-server -o yaml
 ```
-
-# ABOUT 10 lines from the top - AND DELETE THIS AFTER
-
 
 By contrast, the top level *gogs-server* - does not have an *ownerReferences* section:  
 
@@ -526,12 +514,5 @@ oc delete clusterrole gogs-admin-rules
 oc delete crd gogs.gpte.opentlc.com
 ```
 
-# RECORDING - SAY this then delete
-# I'm Tom Corcoran
-# Thanks for allowing me to demo you 2 Kubernetes and Openshift Operators - the Helm Operator and the Ansible 
-# Operator
-# The instructions to run today's demos are available at github.com/tnscorcoran/openshift-operators \
-
-
-Thanks for allowing me to demo you 2 Kubernetes and Openshift Operators - the Helm Operator and the Ansible Operator
+That's it! Thanks for allowing me to demo you 2 Kubernetes and Openshift Operators - the Helm Operator and the Ansible Operator
 
