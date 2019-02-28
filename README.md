@@ -40,6 +40,8 @@ As shown in the diagrams above, the Helm operator is the simplest of the 3 Opera
 The following shows the steps we will follow:
 ![](https://github.com/tnscorcoran/openshift-operators/blob/master/images/4-nginx-helm-operator-summary.png)
 
+### Instructions
+
 SSH into your RHEL box and set up Go Environment (version 1.11.2)
 
 ```
@@ -184,6 +186,8 @@ This discussion and demo is based on an existing [Ansible operator demo](http://
 
 The following shows the steps we will follow:
 ![](https://github.com/tnscorcoran/openshift-operators/blob/master/images/6-gogs-ansible-operator-summary.png)
+
+### Instructions
 
 SSH into your RHEL box. If starting from scratch, set up Go Environment (version 1.11.2). As we're not, we don't need to do this.
 
