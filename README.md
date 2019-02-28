@@ -15,7 +15,7 @@ An Operator is like an extension your engineering team that watches over the Kub
 
 The vision for Operators is to allow Independent Software Vendors (ISVs) to bundle operators with their software - in order to make them as maintainable, updatable and essentially as robust as possible, This vision is fast becoming a reality. 
 
-Where operators will really become powerful is with the future release of the Operator Lifecycle Manager (OLM). Using the OLM, cluster administrators will be able to centrally manage and configure ISV provided operators - controlling everything an operator has been configured to do across the whole cluster.
+Where operators will really become powerful is with the future release of the Operator Lifecycle Manager (OLM). Using the OLM, cluster administrators will be able to centrally manage and configure ISV provided operators - controlling everything an operator has been configured to do across the whole cluster and which namespaces get access.
 Developers will then be able to provision or consume *operated services* that the administrator has made available.
 See this [demo of OLM](https://www.youtube.com/watch?v=nGM2s4-Qr74).
 Today's discussion focuses on the *building* of operators, as will be undertaken by ISVs. We'll document and demonstrate operator *usage* through the OLM in a future article.
