@@ -522,5 +522,5 @@ oc delete clusterrole gogs-admin-rules
 oc delete crd gogs.gpte.opentlc.com
 ```
 
-That's it! Thanks for allowing me to demo you 2 Kubernetes and Openshift Operators - the Helm Operator and the Ansible Operator
+That's it! Thanks for allowing me to demo you 2 Kubernetes and Openshift Operators - the Helm Operator and the Ansible Operator. A video of this demonstration is available at https://youtu.be/kkJWHqiuxlQ
 
