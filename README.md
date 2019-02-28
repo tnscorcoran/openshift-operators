@@ -15,12 +15,12 @@ An Operator is like an extension your engineering team that watches over the Kub
 
 The vision for Operators is to allow Independent Software Vendors (ISVs) to bundle operators with their software - in order to make them as maintainable, updatable and essentially as robust as possible, This vision is fast becoming a reality. 
 
-Where operators will really become powerful is with the future release of the Operator Lifecycle Manager (OLM). Using the OLM, cluster administrators will be able to centrally manage and configure ISV provided operators - controlling everything an operator has been configured to do across the whole cluster.. See this [demo of OLM](https://www.youtube.com/watch?v=nGM2s4-Qr74).
-We'll document and demonstrate the OLM in a future article.
+Where operators will really become powerful is with the future release of the Operator Lifecycle Manager (OLM). Using the OLM, cluster administrators will be able to centrally manage and configure ISV provided operators - controlling everything an operator has been configured to do across the whole cluster.
+Developers will then be able to provision or consume *operated services* that the administrator has made available.
+See this [demo of OLM](https://www.youtube.com/watch?v=nGM2s4-Qr74).
+Today's discussion focuses on the *building* of operators, as will be undertaken by ISVs. We'll document and demonstrate operator *usage* through the OLM in a future article.
 
-Currently there are 3 Operator implementation options of varying levels of maturity and complexity
-
-They are
+Currently there are 3 Operator implementation options of varying levels of maturity and complexity. They are
 - Helm (for running Helm charts in a secure way not requiring Tiller which needs root access and as such could be considered a security risk)
 - Ansible - offering further control by calling out to Ansible playbooks and roles.
 - Go - which could be considered the Gold Standard of operators - allowing you to embed your specific fine grained control logic.
