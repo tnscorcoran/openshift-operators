@@ -32,6 +32,8 @@ Today, I will take two of these operator types:
 - and an Ansible based GOGs operator
 and add context around them as well as building their respective demos.
 
+> Note future versions of Openshift starting at 4.0 will use the *Operator Lifecycle Manager* but as this is Tech Preview still (3.11), let's manually build our operators using the SDK
+
 Let's get started!
 
 # Helm based NGINX operator
