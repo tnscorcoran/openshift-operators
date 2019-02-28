@@ -38,7 +38,7 @@ Let's get started!
 This discussion and demo is based on an existing [Helm demo](https://github.com/operator-framework/operator-sdk/blob/master/doc/helm/user-guide.md).
 As shown in the diagrams above, the Helm operator is the simplest of the 3 Operator types supported by Openshift. That said, it's a great way to run Helm charts in Openshift without Tiller, which as mentioned, requires root access and as such can be considered a security risk.   
 The following shows the steps we will follow:
-![](https://github.com/tnscorcoran/openshift-operators/blob/master/images/3-nginx-helm-operator.png)
+![](https://github.com/tnscorcoran/openshift-operators/blob/master/images/4-nginx-helm-operator-summary.png)
 
 SSH into your RHEL box and set up Go Environment (version 1.11.2)
 
@@ -183,7 +183,7 @@ Next we're going to discuss and run a more powerful operator - the Ansible opera
 This discussion and demo is based on an existing [Ansible operator demo](http://www.opentlc.com/operators/04_01_Writing_an_Operator_Lab.html).
 
 The following shows the steps we will follow:
-![](https://github.com/tnscorcoran/openshift-operators/blob/master/images/4-gogs-ansible-operator.png)
+![](https://github.com/tnscorcoran/openshift-operators/blob/master/images/6-gogs-ansible-operator-summary.png)
 
 SSH into your RHEL box. If starting from scratch, set up Go Environment (version 1.11.2). As we're not, we don't need to do this.
 
